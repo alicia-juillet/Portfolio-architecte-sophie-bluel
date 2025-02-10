@@ -53,7 +53,7 @@ async function categoryButtons() {
 
         const button = document.createElement("button");
         button.innerText = category.name;
-        allButton.classList.add("btn-filter");
+        button.classList.add("btn-filter");
         button.addEventListener("click", async () => {
             const projectFilter = project.filter(project => project.categoryId === category.id);
             galleryProjects(projectFilter);

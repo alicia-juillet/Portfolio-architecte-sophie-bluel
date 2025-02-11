@@ -93,10 +93,32 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	text-decoration: none;
+  	color: black;
 }
+
+nav li img {
+	height: 22px;
+  	width: 22px;
+}
+
+li a {
+	text-decoration: none;
+	color: black;
+}
+
+a.active {
+	font-weight: bold;
+}
+
 
 li:hover {
 	color: #B1663C;
+}
+
+li a:hover {
+	color: #B1663C
+	
 }
 #introduction {
 	display: flex;
@@ -214,7 +236,7 @@ footer nav ul {
 }
 
 #login {
-	width: 50%;
+	width: 30%;
 	margin: auto;
 }
 #login > * {
@@ -222,13 +244,16 @@ footer nav ul {
 
 }
 #login h2{
-	margin-bottom: 20px;
+	
+	margin-top: 100px;
 }
 #login form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
+	min-width: 379px;
+
 }
 
 #login input {
@@ -239,6 +264,13 @@ footer nav ul {
 }
 #login label {
 	margin: 2em 0 1em 0;
+}
+
+.forgottenPassword {
+	display: flex;
+	justify-content: center;
+	color: black;
+	padding-left: 35px;
 }
 
 

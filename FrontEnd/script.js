@@ -1,3 +1,4 @@
+/** Code pour la gallerie */
 async function works() {
     const response = await fetch('http://localhost:5678/api/works');
     const project = response.json();
@@ -69,3 +70,15 @@ async function init() {
 }
 
 init();
+
+
+/** Code pour la page de login */
+
+const link = document.querySelectorAll("nav a");
+const urlOpen = window.location.href;
+
+link.forEach(link => {
+    if (link.href === urlOpen) {
+        link.classList.add("active")
+    }
+})

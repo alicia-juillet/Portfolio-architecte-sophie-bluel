@@ -266,12 +266,24 @@ footer nav ul {
 	margin: 2em 0 1em 0;
 }
 
-.forgottenPassword {
+
+.forgottenPassword a {
 	display: flex;
 	justify-content: center;
 	color: black;
-	padding-left: 35px;
+	
+	
 }
 
+.forgottenPassword a:hover {
+	color: #B1663C
+}
+
+#errorMessage {
+	color: red;
+	display: none;
+	text-align: center;
+	margin-top: 30px;
+}
 
 

@@ -26,15 +26,19 @@
 	</nav>
 </header>
 <main>
-    <section id="login">
+    <section>
         <h2>Log In</h2>
-        <form action="#" method="post">
+        <form id="loginUsers" action="#" method="post">
             <label for="email">E-mail</label>
             <input type="email" name="email" id="email">
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password">
             <input type="submit" value="Se connecter">
+			<div class="forgottenPassword">
+			<a href="#">Mot de passe oublié</a>
+			</div>	
+			<p id="errorMessage">Email ou Mot de passe incorrect.</p>
         </form>
-        <a href="#" class="forgottenPassword">Mot de passe oublié</a>
+        
     </section>
 </main>

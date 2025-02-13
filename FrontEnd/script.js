@@ -71,49 +71,29 @@ async function init() {
 
 init();
 
+/** mode édition */
 
-/** Code pour la page de login */
+const editionMode = document.querySelector(".edition-mode");
+const logoutButton = document.querySelector(".logout-link");
+const loginButton = document.querySelector(".login-link");
+const btnFilter = document.querySelector(".btn-filter-container");
+const btnModify = document.querySelector(".modify");
 
-const link = document.querySelectorAll("nav a");
-const urlOpen = window.location.href;
+const token = localStorage.getItem("token");
+if (token) {
+    editionMode.style.display= "flex";
+    logoutButton.style.display= "inline";
+    loginButton.style.display= "none";
+    btnFilter.style.display= "none";
+    btnModify.style.display="flex"
+}
 
-link.forEach(link => {
-    if (link.href === urlOpen) {
-        link.classList.add("active")
-    }
-})
+if (logoutButton) {
+    logoutButton.addEventListener("click", () => {
+        localStorage.removeItem("token");
+        editionMode.style.display="none";
+        logoutButton.style.display="none";
+        window.location.reload();
+    })
+}
 
-/** Connexion utilisateur */
-
-document.getElementById("loginUsers").addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const errorMessage = document.getElementById("errorMessage");
-
-    try {
-        const response = await fetch('http://localhost:5678/api/users/login', {
-            method: "POST",
-            headers: {
-                "accept": "application/json",
-                "Content-Type": "application/json"  
-            },
-            body: JSON.stringify({email, password}),
-        });
-
-        const connection = await response.json();
-
-        if (response.ok) {
-            localStorage.setItem("token", connection.token);
-            window.location.href = "index.html";
-        } else {
-            errorMessage.style.display = "block";
-            errorMessage.textContent = "Email ou Mot de passe incorrect.";
-        }
-    } catch (error) {
-        console.error("erreur : ", error);
-        errorMessage.style.display = "block";
-        errorMessage.textContent = "Une erreur est survenue. Veuillez réessayer.";
-    }
-});

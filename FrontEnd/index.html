@@ -15,28 +15,30 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <header>
-      <div class="edition-mode">
-        <img src="assets/icons/Vector(2).png" alt="edition-mode" />
-        <p>Mode édition</p>
-      </div>
-      <div class="menu">
-        <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-        <nav>
-          <ul>
-            <li>projets</li>
-            <li>contact</li>
-            <li>
-              <a href="login.html" class="login-link">login</a>
-              <a href="index.html" class="logout-link">logout</a>
-            </li>
-            <li>
-              <img src="./assets/icons/instagram.png" alt="Instagram" />
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <div class="edition-mode">
+      <img src="assets/icons/Vector(2).png" alt="edition-mode" />
+      <p>Mode édition</p>
+    </div>
+    <div class="menu-container">
+      <header>
+        <div class="menu">
+          <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+          <nav>
+            <ul>
+              <li>projets</li>
+              <li>contact</li>
+              <li>
+                <a href="login.html" class="login-link">login</a>
+                <a href="index.html" class="logout-link">logout</a>
+              </li>
+              <li>
+                <img src="./assets/icons/instagram.png" alt="Instagram" />
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </div>
     <main>
       <section id="introduction">
         <figure>
@@ -57,19 +59,20 @@
           </p>
           <p>
             En cas de besoin, une équipe pluridisciplinaire peut-être constituée
-            : architecte DPLG, décorateur(trice)
+            : architecte DPLG, décorateur(trice).
           </p>
         </article>
       </section>
       <section id="portfolio">
         <div class="project-modify">
           <h2>Mes Projets</h2>
-          <div class="btn-filter-container"></div>
           <div class="modify">
             <img src="assets/icons/Vector(1).png" alt="modify" />
             <a href="#" class="modify-link">modifier</a>
           </div>
         </div>
+        <div class="btn-filter-container"></div>
+
         <div class="gallery"></div>
       </section>
       <section id="contact">

@@ -48,7 +48,7 @@ table {
 }
 /** end reset css**/
 body {
-	
+	max-width: 1140px;
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
@@ -59,19 +59,13 @@ header {
 	justify-content: space-between;
 	margin: 50px 0;
 	flex-direction: column;
-  max-width: 1140px;
-  margin: 50px auto;
-}
 
-.menu-container {
-  max-width: 1140px;
-  margin: auto;
 }
 
 .menu {
 	display: flex;
 	justify-content: space-between;
-
+	margin-top: 38px;
 }
 
 
@@ -107,7 +101,7 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 	text-decoration: none;
-  	color: black;
+  color: black;
 }
 
 nav li img {
@@ -133,24 +127,12 @@ li a:hover {
 	color: #B1663C
 	
 }
-
-#introduction,
-#portfolio,
-#contact,
-footer nav {
-  max-width: 1140px;
-  margin: auto;
-}
-
 #introduction {
 	display: flex;
 	align-items: center;
-  max-width: 1140px;
-  margin: auto;
 }
 #introduction figure {
-	flex: 1;
-  margin-right: 50px;
+	flex: 1
 }
 #introduction img {
 	display: block;
@@ -167,8 +149,6 @@ footer nav {
 
 #introduction p {
 	margin-bottom: 0.5em;
-  line-height: 1.2;
-  max-width: 420px;
 }
 
 #portfolio {
@@ -206,9 +186,6 @@ footer nav {
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
-  max-width: 379px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 #contact input {
@@ -216,7 +193,6 @@ footer nav {
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-  width: 100%;
 }
 #contact label {
 	margin: 2em 0 1em 0;
@@ -290,9 +266,7 @@ footer nav ul {
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
-	max-width: 379px;
-  margin-left: auto;
-  margin-right: auto;
+	min-width: 379px;
 
 }
 
@@ -301,7 +275,6 @@ footer nav ul {
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-  width: 100%;
 }
 #login label {
 	margin: 2em 0 1em 0;
@@ -336,7 +309,6 @@ footer nav ul {
 	  width: 100%;
 	  gap: 10px;
 	  justify-content: center;
-    margin: 0;
 }
 
 

@@ -348,13 +348,13 @@ footer nav ul {
 /** modale */
 
 .overlay {
+	display: none;
 	top: 0;
 	left: 0;
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
 	background: rgba(0, 0, 0, 0.3);
-	display: flex;
 	align-items: center;
 	justify-content: center;
 
@@ -457,3 +457,6 @@ footer nav ul {
 	border: none;
 }
 
+.closeBtn {
+	cursor: pointer;
+}

@@ -12,11 +12,19 @@
     />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="script.js" defer></script>
+    <script src="modal.js" defer></script>
   </head>
   <body>
     <div class="edition-mode">
-      <img src="assets/icons/Vector(2).png" alt="edition-mode" />
+      <i class="fa-regular fa-pen-to-square"></i>
       <p>Mode édition</p>
     </div>
     <div class="menu-container">
@@ -67,8 +75,8 @@
         <div class="project-modify">
           <h2>Mes Projets</h2>
           <div class="modify">
-            <img src="assets/icons/Vector(1).png" alt="modify" />
-            <a href="#" class="modify-link">modifier</a>
+            <i class="fa-regular fa-pen-to-square"></i>
+            <a href="#" id="open-modal">modifier</a>
           </div>
         </div>
         <div class="btn-filter-container"></div>
@@ -97,5 +105,82 @@
         </ul>
       </nav>
     </footer>
+    <div class="overlay">
+      <div class="modale">
+        <i class="fa-solid fa-xmark"></i>
+        <h2>Galerie photo</h2>
+        <div class="modale-gallery">
+          <div class="gallery-item">
+            <img src="./assets/images/abajour-tahina.png" alt="sapin" />
+            <button class="delete-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="gallery-item">
+            <img src="./assets/images/appartement-paris-v.png" alt="sapin" />
+            <button class="delete-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="gallery-item">
+            <img src="./assets/images/restaurant-sushisen-londres.png" alt="sapin" />
+            <button class="delete-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="gallery-item">
+            <img src="./assets/images/la-balisiere.png" alt="sapin" />
+            <button class="delete-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="gallery-item">
+            <img src="./assets/images/structures-thermopolis.png" alt="sapin" />
+            <button class="delete-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="gallery-item">
+            <img src="./assets/images/appartement-paris-x.png" alt="sapin" />
+            <button class="delete-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="gallery-item">
+            <img src="./assets/images/villa-ferneze.png" alt="sapin" />
+            <button class="delete-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="gallery-item">
+            <img src="./assets/images/appartement-paris-xviii.png" alt="sapin" />
+            <button class="delete-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="gallery-item">
+            <img src="./assets/images/le-coteau-cassis.png" alt="sapin" />
+            <button class="delete-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="gallery-item">
+            <img src="./assets/images/bar-lullaby-paris.png" alt="sapin" />
+            <button class="delete-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="gallery-item">
+            <img src="./assets/images/hotel-first-arte-new-delhi.png" alt="sapin" />
+            <button class="delete-btn">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+        <div class="line">
+        </div>
+        <button class="add-photo">Ajouter une photo</button>
+      </div>
+    </div>
   </body>
 </html>

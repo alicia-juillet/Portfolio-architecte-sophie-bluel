@@ -506,7 +506,7 @@ footer nav ul {
 	margin-top: 36px;
 	width: 420px;
 	height: 169px;
-	
+	margin-bottom: 10px;
 
   }
   
@@ -551,11 +551,14 @@ footer nav ul {
   .modale-add-photo form {
 	width: 420px;
 	margin: 0 auto;
+	display: flex;
+    flex-direction: column;
+    align-items: center; 
   }
 
   .form-container p{
 	text-align: left;
-	margin-top:30px;
+	margin-top: 20px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -569,20 +572,32 @@ footer nav ul {
 	cursor: pointer;
 }
 
+.line2 {
+	width: 420px;
+	background-color: #B3B3B3;
+	height: 1px;
+	margin-top: 47px;
+	
+}
+
   
   
   /* Bouton Valider */
   .validate-btn {
-	background: #c0c0c0;
+	background: #A7A7A7;
 	color: white;
-	padding: 10px;
-	width: 100%;
+	width: 237px;
 	border: none;
-	border-radius: 5px;
-	margin-top: 20px;
+	border-radius: 50px;
+	margin-top: 32px;
 	cursor: pointer;
+	font-family: 'Syne';
+	font-size: 14px;
+	font-weight: 700;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	height: 36px;
   }
   
-  .validate-btn:hover {
-	background: #a0a0a0;
-  }
+

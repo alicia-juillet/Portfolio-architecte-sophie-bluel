@@ -49,7 +49,6 @@ async function initModal() {
     const closeBtn = document.querySelector(".closeBtn");
     closeBtn.addEventListener("click", () => {
       overlay.style.display = "none";
-      console.log("click");
     });
 
     overlay.addEventListener("click", (event) => {
@@ -59,3 +58,15 @@ async function initModal() {
 }
 
 initModal();
+
+const modale = document.querySelector(".modale");
+const modaleAddPhotos = document.querySelector(".modale-add-photo");
+const addPhoto = document.querySelector(".add-photo");
+
+modaleAddPhotos.style.display = "none";
+
+addPhoto.addEventListener("click", () => {
+  modaleAddPhotos.style.display = "block";
+  modale.style.display = "none";
+})
+

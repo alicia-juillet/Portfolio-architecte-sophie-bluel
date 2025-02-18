@@ -455,8 +455,134 @@ footer nav ul {
 	height: 36px;
 	align-items: center;
 	border: none;
+	cursor: pointer;
 }
 
 .closeBtn {
 	cursor: pointer;
 }
+
+/** modale d'ajout de photo */
+
+.modale-add-photo {
+	width: 630px;
+	height: 670px;
+	background-color: white;
+	border-radius: 10px;
+  }
+
+  .return-close-btn {
+	display: flex;
+	justify-content: space-between;
+	margin: 26px 30px;
+  }
+
+  .return-close-btn i {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modale-add-photo h2 {
+	margin-top: 10px;
+	font-family: 'Work Sans';
+	font-weight: 400;
+	font-size: 26px;
+	color: black;
+	text-align: center;
+}
+
+.upload-container {
+	display: flex;
+	justify-content: center;
+}
+
+.upload-image {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+	border-radius: 5px;
+	background: #E8F1F6;
+	margin-top: 36px;
+	width: 420px;
+	height: 169px;
+	
+
+  }
+  
+.upload-image i {
+	font-size: 40px;
+	color: #B9C5CC;
+	padding-top: 22px;
+	font-size: 68px;
+  }
+  
+  .upload-image p {
+	font-size: 14px;
+	font-family: 'Work Sans';
+	font-weight: 500;
+	text-align: center;
+	color: #306685;
+	margin-top: 10px;
+	background: #CBD6DC;
+	height: 36px;
+	width: 173px;
+	border-radius: 50px;
+	align-content: center;
+  }
+
+  .upload-image span {
+	font-family: 'Work Sans';
+	font-size: 10px;
+	color: #444444;
+	padding-top: 7px;
+  }
+  
+  .form-container input,
+  .form-container select {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	min-width: 379px;
+	background-color: white;
+  }
+
+  .modale-add-photo form {
+	width: 420px;
+	margin: 0 auto;
+  }
+
+  .form-container p{
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 10px;
+	
+  }
+
+  .form-container select {
+    text-indent: -20px;
+    padding-left: 20px; 
+	cursor: pointer;
+}
+
+  
+  
+  /* Bouton Valider */
+  .validate-btn {
+	background: #c0c0c0;
+	color: white;
+	padding: 10px;
+	width: 100%;
+	border: none;
+	border-radius: 5px;
+	margin-top: 20px;
+	cursor: pointer;
+  }
+  
+  .validate-btn:hover {
+	background: #a0a0a0;
+  }

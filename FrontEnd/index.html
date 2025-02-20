@@ -20,7 +20,8 @@
       referrerpolicy="no-referrer"
     />
     <script src="script.js" defer></script>
-    <script src="modal.js" defer></script>
+    <script src="modal.js" type="module" defer></script>
+    <script src="delete.js" type="module" defer></script>
   </head>
   <body>
     <div class="edition-mode">
@@ -115,7 +116,7 @@
       </div>
       <div class="modale-add-photo">
         <div class="return-close-btn">
-          <i class="fa-solid fa-arrow-left"></i>
+          <i class="fa-solid fa-arrow-left returnBtn"></i>
           <i class="fa-solid fa-xmark closeBtn"></i>
         </div>
         <h2>Ajout photo</h2>
@@ -137,13 +138,12 @@
               <label for="categorie">Catégorie</label>
               <select name="categorie" id="categorie">
                 <option value="" selected></option>
-                <option value="appartement">Appartement</option>
-                <option value="objet">objet</option>
               </select>
             </p>
           </div>
           <div class="line2"></div>
           <button type="submit" class="validate-btn">Valider</button>
+          <p id="message-error">Format de l'image invalide</p>
         </form>
       </div>
     </div>

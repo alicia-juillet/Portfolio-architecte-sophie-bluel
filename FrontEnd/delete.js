@@ -45,8 +45,6 @@ export async function deleteWorks(id) {
 }
 
 export async function confirmed(id) {
-    const confirmation = confirm("Voulez-vous vraiment supprimer ce travail ?");
-    if (confirmation) {
         await deleteWorks(id);
-    }
+    
 }

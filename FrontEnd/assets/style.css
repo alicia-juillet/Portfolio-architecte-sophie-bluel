@@ -553,6 +553,12 @@ footer nav ul {
   justify-content: center;
 }
 
+.label-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .upload-image {
   display: flex;
   flex-direction: column;
@@ -566,14 +572,14 @@ footer nav ul {
   margin-bottom: 10px;
 }
 
-.upload-image i {
+.label-content i {
   font-size: 40px;
   color: #b9c5cc;
   padding-top: 22px;
   font-size: 68px;
 }
 
-.upload-image p {
+.label-content p {
   font-size: 14px;
   font-family: "Work Sans";
   font-weight: 500;
@@ -587,7 +593,7 @@ footer nav ul {
   align-content: center;
 }
 
-.upload-image span {
+.label-content span {
   font-family: "Work Sans";
   font-size: 10px;
   color: #444444;
@@ -637,13 +643,27 @@ footer nav ul {
   width: 237px;
   border: none;
   border-radius: 50px;
-  margin-top: 32px;
+  margin: 32px auto;
   cursor: pointer;
   font-family: "Syne";
   font-size: 14px;
   font-weight: 700;
   align-items: center;
-  display: flex;
+  display: block;
   justify-content: center;
   height: 36px;
 }
+
+#selected-img {
+  display: none;
+  width: 129px;
+  height: 169px;
+  object-fit: cover;
+}
+
+#message-error {
+  display: none;
+}
+
+
+

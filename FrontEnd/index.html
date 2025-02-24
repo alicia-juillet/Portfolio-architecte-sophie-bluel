@@ -22,6 +22,7 @@
     <script src="script.js" defer></script>
     <script src="modal.js" type="module" defer></script>
     <script src="delete.js" type="module" defer></script>
+    <script src="add.js" defer></script>
   </head>
   <body>
     <div class="edition-mode">
@@ -120,29 +121,40 @@
           <i class="fa-solid fa-xmark closeBtn"></i>
         </div>
         <h2>Ajout photo</h2>
-        <form>
-          <div class="upload-container">
-            <label for="upload-image" class="upload-image">
-              <i class="fa-regular fa-image"></i>
-              <p>+ Ajouter photo</p>
-              <span>jpg, png : 4mo max</span>
-            </label>
-            <input type="file" id="upload-image" accept="image/png, image/jpeg" hidden/>
+        <form id="add-photos">
+          <div class="form-add-container">
+            <div class="upload-container">
+              <label for="upload-image" class="upload-image">
+                <div class="label-content">
+                  <i class="fa-regular fa-image"></i>
+                  <p>+ Ajouter photo</p>
+                  <span>jpg, png : 4mo max</span>
+                </div>
+                <img src="#" alt="Image sélectionnée" id="selected-img" />
+              </label>
+              <input
+                type="file"
+                id="upload-image"
+                accept="image/png, image/jpeg"
+                hidden
+              />
+            </div>
+            <div class="form-container">
+              <p>
+                <label for="title">Titre</label>
+                <input type="text" name="title" id="title" />
+              </p>
+              <p>
+                <label for="categorie">Catégorie</label>
+                <select name="categorie" id="categorie">
+                  <option value="" selected></option>
+                </select>
+              </p>
+            </div>
+
+            <div class="line2"></div>
+            <button type="submit" class="validate-btn">Valider</button>
           </div>
-          <div class="form-container">
-            <p>
-              <label for="title">Titre</label>
-              <input type="text" name="title" id="title" />
-            </p>
-            <p>
-              <label for="categorie">Catégorie</label>
-              <select name="categorie" id="categorie">
-                <option value="" selected></option>
-              </select>
-            </p>
-          </div>
-          <div class="line2"></div>
-          <button type="submit" class="validate-btn">Valider</button>
           <p id="message-error">Format de l'image invalide</p>
         </form>
       </div>

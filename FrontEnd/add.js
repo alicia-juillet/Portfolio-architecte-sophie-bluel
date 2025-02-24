@@ -1,32 +1,148 @@
 /** ajout photo vers l'api */
+const form = document.querySelector("#add-photos");
 
-
-document.querySelector(".upload-image").addEventListener("submit", async function (event) {
+async function addPhoto(event) {
   event.preventDefault();
 
   const title = document.querySelector("#title").value;
   const category = document.querySelector("#categorie").value;
+  const imageFile = document.querySelector("#upload-image").files[0];
   const errorMessage = document.querySelector("#message-error");
+  errorMessage.style.display = 'none';
 
-  try {
-      const response = await fetch('http://localhost:5678/api/works', {
-          method: "POST",
-          headers: {
-              "accept": "application/json",
-              "Content-Type": "multipart/form-data" 
-          },
-          body: JSON.stringify({image, title, category}),
-      });
+  // Vérifier que tous les champs sont remplis
+  if (!title || !category || !imageFile) {
+    console.log("Champs manquants");
+    errorMessage.textContent = "Tous les champs doivent être remplis";
+    errorMessage.style.display = "block";
+    return;
+  }
 
-      if (response.ok) {
-        window.location.href = "index.html";
-      } else {
-        errorMessage.style.display = "block";
-        errorMessage.textContent = "Format de l'image invalide";
-      }
-    } catch (error) {
-      console.log("erreur : ", error);
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("category", parseInt(category));
+  formData.append("image", imageFile);
+
+    const response = await fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      errorMessage.textContent = "Erreur lors de l'ajout de la photo";
       errorMessage.style.display = "block";
-      errorMessage.textContent = "Une erreur est survenue. Veuillez réessayer.";
+      throw new Error(`Erreur :  ${response}`);
     }
+
+    // Mettre à jour les galeries
+    await updateGalleries();
+
+    // Réinitialiser le formulaire
+    document.querySelector("#add-photos").reset();
+    document.querySelector(".label-content").style.display = "block";
+    document.querySelector("#selected-img").style.display = "none";
+
+    // Fermer la modale d'ajout
+    document.querySelector(".modale-add-photo").style.display = "none";
+    document.querySelector(".modale").style.display = "block";
+
+}
+
+// Fonction pour mettre à jour les galeries
+async function updateGalleries() {
+  const response = await fetch("http://localhost:5678/api/works");
+  const works = await response.json();
+
+  // Mettre à jour la galerie principale
+  const mainGallery = document.querySelector(".gallery");
+  mainGallery.innerHTML = "";
+  works.forEach((work) => {
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const figcaption = document.createElement("figcaption");
+
+    img.src = work.imageUrl;
+    img.alt = work.title;
+    figcaption.innerText = work.title;
+
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+    mainGallery.appendChild(figure);
   });
+
+  // Mettre à jour la galerie modale
+  const modalGallery = document.querySelector(".gallery-anchor");
+  modalGallery.innerHTML = "";
+  works.forEach((work) => {
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+
+    img.src = work.imageUrl;
+    img.alt = work.title;
+
+    figure.appendChild(img);
+    modalGallery.appendChild(figure);
+  });
+
+  document.querySelector("#add-photos").reset();
+  document.querySelector(".label-content").style.display = "block";
+  document.querySelector("#selected-img").style.display = "none";
+}
+
+document.querySelector("#add-photos").addEventListener("submit", addPhoto);
+
+// Gestion de l'aperçu de l'image
+const inputFile = document.querySelector("#upload-image");
+const selectedImg = document.querySelector("#selected-img");
+const labelContent = document.querySelector(".label-content");
+
+inputFile.addEventListener("change", () => {
+  const img = inputFile.files[0];
+  if (img) {
+    labelContent.style.display = "none";
+    selectedImg.style.display = "block";
+    selectedImg.src = URL.createObjectURL(img);
+  }
+});
+
+
+/** changement de couleur bouton de validation */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector(".modale-add-photo form");
+  const inputs = form.querySelectorAll(
+    "input[type='text'], input[type='file'], select"
+  );
+  const validateBtn = document.querySelector(".validate-btn");
+
+  function checkFormCompletion() {
+    let completed = true;
+
+    inputs.forEach((input) => {
+      if (input.type === "file") {
+        if (!input.files || input.files.length === 0) {
+          completed = false;
+        }
+      } else {
+        if (!input.value.trim()) {
+          completed = false;
+        }
+      }
+    });
+
+    validateBtn.style.backgroundColor = completed ? "#1D6154" : "#A7A7A7";
+  }
+
+  inputs.forEach((input) => {
+    input.addEventListener("input", checkFormCompletion);
+    input.addEventListener("change", checkFormCompletion);
+  });
+
+  checkFormCompletion();
+});
+
+
+

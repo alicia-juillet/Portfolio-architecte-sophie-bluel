@@ -40,21 +40,13 @@ async function addPhoto(event) {
     // Mettre à jour les galeries
     await updateGalleries();
 
-    // Réinitialiser le formulaire
-    document.querySelector("#add-photos").reset();
-    document.querySelector(".label-content").style.display = "block";
-    document.querySelector("#selected-img").style.display = "none";
-
-    // Fermer la modale d'ajout
-    document.querySelector(".modale-add-photo").style.display = "none";
-    document.querySelector(".modale").style.display = "block";
-
 }
 
 // Fonction pour mettre à jour les galeries
 async function updateGalleries() {
   const response = await fetch("http://localhost:5678/api/works");
   const works = await response.json();
+  console.log('works', works)
 
   // Mettre à jour la galerie principale
   const mainGallery = document.querySelector(".gallery");
@@ -73,20 +65,6 @@ async function updateGalleries() {
     mainGallery.appendChild(figure);
   });
 
-  // Mettre à jour la galerie modale
-  const modalGallery = document.querySelector(".gallery-anchor");
-  modalGallery.innerHTML = "";
-  works.forEach((work) => {
-    const figure = document.createElement("figure");
-    const img = document.createElement("img");
-
-    img.src = work.imageUrl;
-    img.alt = work.title;
-
-    figure.appendChild(img);
-    modalGallery.appendChild(figure);
-  });
-
   document.querySelector("#add-photos").reset();
   document.querySelector(".label-content").style.display = "block";
   document.querySelector("#selected-img").style.display = "none";
@@ -103,7 +81,7 @@ inputFile.addEventListener("change", () => {
   const img = inputFile.files[0];
   if (img) {
     labelContent.style.display = "none";
-    selectedImg.style.display = "block";
+    selectedImg.style.display = "flex";
     selectedImg.src = URL.createObjectURL(img);
   }
 });
@@ -145,4 +123,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+/** fermeture automatique de la modale après ajout de la photo */
 
+const validateBtn = document.querySelector(".validate-btn");
+const overlay = document.querySelector(".overlay");
+validateBtn.addEventListener("click", () => {
+    overlay.style.display = "none"
+})

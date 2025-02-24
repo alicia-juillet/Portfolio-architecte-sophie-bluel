@@ -1,4 +1,5 @@
 import { confirmed } from "./delete.js";
+
 async function works() {
   const response = await fetch("http://localhost:5678/api/works");
   const project = await response.json();
@@ -35,8 +36,7 @@ function galleryModal(photos) {
 }
 
 async function initModal() {
-  const photos = await works();
-  const galleryElement = galleryModal(photos);
+
 
   await categorieSelection();
 
@@ -49,7 +49,9 @@ async function initModal() {
   overlay.style.display = "none";
   modaleAddPhotos.style.display = "none";
 
-  modifyLink.addEventListener("click", () => {
+  modifyLink.addEventListener("click", async() => {
+    const photos = await works();
+    const galleryElement = galleryModal(photos);
     overlay.style.display = "flex";
     modale.style.display = "block";
     modaleAddPhotos.style.display = "none";

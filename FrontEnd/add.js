@@ -1,19 +1,15 @@
 /** ajout photo vers l'api */
 const form = document.querySelector("#add-photos");
 
-async function addPhoto(event) {
-  event.preventDefault();
-
+async function addPhoto() {
   const title = document.querySelector("#title").value;
   const category = document.querySelector("#categorie").value;
   const imageFile = document.querySelector("#upload-image").files[0];
   const errorMessage = document.querySelector("#message-error");
-  errorMessage.style.display = 'none';
+  errorMessage.style.display = "none";
 
   // Vérifier que tous les champs sont remplis
   if (!title || !category || !imageFile) {
-    console.log("Champs manquants");
-    errorMessage.textContent = "Tous les champs doivent être remplis";
     errorMessage.style.display = "block";
     return;
   }
@@ -23,30 +19,29 @@ async function addPhoto(event) {
   formData.append("category", parseInt(category));
   formData.append("image", imageFile);
 
-    const response = await fetch("http://localhost:5678/api/works", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: formData,
-    });
+  const response = await fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: formData,
+  });
 
-    if (!response.ok) {
-      errorMessage.textContent = "Erreur lors de l'ajout de la photo";
-      errorMessage.style.display = "block";
-      throw new Error(`Erreur :  ${response}`);
-    }
+  if (!response.ok) {
+    errorMessage.textContent = "Erreur lors de l'ajout de la photo";
+    errorMessage.style.display = "block";
+    throw new Error(`Erreur :  ${response}`);
+  }
 
-    // Mettre à jour les galeries
-    await updateGalleries();
-
+  // Mettre à jour les galeries
+  await updateGalleries();
 }
 
 // Fonction pour mettre à jour les galeries
 async function updateGalleries() {
   const response = await fetch("http://localhost:5678/api/works");
   const works = await response.json();
-  console.log('works', works)
+  console.log("works", works);
 
   // Mettre à jour la galerie principale
   const mainGallery = document.querySelector(".gallery");
@@ -65,12 +60,10 @@ async function updateGalleries() {
     mainGallery.appendChild(figure);
   });
 
-  document.querySelector("#add-photos").reset();
-  document.querySelector(".label-content").style.display = "block";
+  form.reset();
+  document.querySelector(".label-content").style.display = "flex";
   document.querySelector("#selected-img").style.display = "none";
 }
-
-document.querySelector("#add-photos").addEventListener("submit", addPhoto);
 
 // Gestion de l'aperçu de l'image
 const inputFile = document.querySelector("#upload-image");
@@ -86,47 +79,49 @@ inputFile.addEventListener("change", () => {
   }
 });
 
-
 /** changement de couleur bouton de validation */
+const validateBtn = document.querySelector(".validate-btn");
+const uploadImageInput = document.querySelector("#upload-image");
+const titleInput = document.querySelector("#title");
+const categorieInput = document.querySelector("#categorie");
+const inputs = [uploadImageInput, titleInput, categorieInput];
+const overlay = document.querySelector(".overlay");
+const errorMessage = document.querySelector("#message-error");
 
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector(".modale-add-photo form");
-  const inputs = form.querySelectorAll(
-    "input[type='text'], input[type='file'], select"
-  );
-  const validateBtn = document.querySelector(".validate-btn");
+inputs.forEach((input) => {
+  input.addEventListener('change', (event) => {
+    event.preventDefault();
+    if(isFormCompleted(inputs)){
+      errorMessage.style.display = "none";
+      validateBtn.style.backgroundColor = "#1D6154";
+    }
+  })
+})
 
-  function checkFormCompletion() {
-    let completed = true;
-
-    inputs.forEach((input) => {
-      if (input.type === "file") {
-        if (!input.files || input.files.length === 0) {
-          completed = false;
-        }
-      } else {
-        if (!input.value.trim()) {
-          completed = false;
-        }
-      }
-    });
-
-    validateBtn.style.backgroundColor = completed ? "#1D6154" : "#A7A7A7";
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if(isFormCompleted(inputs)){
+    overlay.style.display = "none";
+    addPhoto();
+  }else{
+    errorMessage.style.display = "block";
+    validateBtn.style.backgroundColor = "#A7A7A7";
   }
-
-  inputs.forEach((input) => {
-    input.addEventListener("input", checkFormCompletion);
-    input.addEventListener("change", checkFormCompletion);
-  });
-
-  checkFormCompletion();
 });
 
+function isFormCompleted(inputs) {
+  let completed = true;
+  inputs.forEach((input) => {
+    if (input.type === "file") {
+      if (!input.files || input.files.length === 0) {
+        completed = false;
+      }
+    } else {
+      if (!input.value.trim()) {
+        completed = false;
+      }
+    }
+  });
 
-/** fermeture automatique de la modale après ajout de la photo */
-
-const validateBtn = document.querySelector(".validate-btn");
-const overlay = document.querySelector(".overlay");
-validateBtn.addEventListener("click", () => {
-    overlay.style.display = "none"
-})
+  return completed;
+}

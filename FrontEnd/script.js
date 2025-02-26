@@ -1,5 +1,5 @@
 import { checkElement } from "./error.js";
-console.log(checkElement(".gallery"))
+
 /** Code pour la gallerie */
 async function works() {
     const response = await fetch('http://localhost:5678/api/works');

@@ -1,3 +1,5 @@
+import { checkElement } from "./error.js";
+console.log(checkElement(".gallery"))
 /** Code pour la gallerie */
 async function works() {
     const response = await fetch('http://localhost:5678/api/works');
@@ -6,11 +8,12 @@ async function works() {
 }
 
 function galleryProjects(project) {
-    const galleryElement = document.querySelector(".gallery");
-    galleryElement.innerHTML = "";
+    const galleryElement = checkElement(".gallery");
+    if (galleryElement) {
+        galleryElement.innerHTML = "";
+    }
 
-    for (let i = 0; i < project.length; i++) {
-        const content = project[i];
+    project.forEach(content => {
 
         const contentElement = document.createElement("figure");
         const imageElement = document.createElement("img");
@@ -22,7 +25,7 @@ function galleryProjects(project) {
         galleryElement.appendChild(contentElement);
         contentElement.appendChild(imageElement);
         contentElement.appendChild(captionElement);
-    }
+    });
 }
 
 async function initGallery() {
@@ -38,7 +41,7 @@ async function getCategories() {
 
 async function categoryButtons() {
     const categories = await getCategories();
-    const buttonFilter = document.querySelector(".btn-filter-container");
+    const buttonFilter = checkElement(".btn-filter-container");
 
     const allButton = document.createElement("button");
     allButton.innerText = "Tous";
@@ -49,8 +52,7 @@ async function categoryButtons() {
     })
     buttonFilter.appendChild(allButton);
 
-    for (let i = 0; i < categories.length; i++) {
-        const category = categories[i];
+    categories.forEach(category => {
 
         const button = document.createElement("button");
         button.innerText = category.name;
@@ -61,7 +63,7 @@ async function categoryButtons() {
         })
     buttonFilter.appendChild(button);
 
-    }
+    });
 }
 
 async function init() {
@@ -73,11 +75,11 @@ init();
 
 /** mode édition */
 
-const editionMode = document.querySelector(".edition-mode");
-const logoutButton = document.querySelector(".logout-link");
-const loginButton = document.querySelector(".login-link");
-const btnFilter = document.querySelector(".btn-filter-container");
-const btnModify = document.querySelector(".modify");
+const editionMode = checkElement(".edition-mode");
+const logoutButton = checkElement(".logout-link");
+const loginButton = checkElement(".login-link");
+const btnFilter = checkElement(".btn-filter-container");
+const btnModify = checkElement(".modify");
 
 const token = localStorage.getItem("token");
 if (token) {

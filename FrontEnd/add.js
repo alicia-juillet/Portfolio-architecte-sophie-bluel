@@ -1,11 +1,13 @@
+import { checkElement } from "./error.js";
+
 /** ajout photo vers l'api */
-const form = document.querySelector("#add-photos");
+const form = checkElement("#add-photos");
 
 async function addPhoto() {
-  const title = document.querySelector("#title").value;
-  const category = document.querySelector("#categorie").value;
-  const imageFile = document.querySelector("#upload-image").files[0];
-  const errorMessage = document.querySelector("#message-error");
+  const title = checkElement("#title").value;
+  const category = checkElement("#categorie").value;
+  const imageFile = checkElement("#upload-image").files[0];
+  const errorMessage = checkElement("#message-error");
   errorMessage.style.display = "none";
 
   // Vérifier que tous les champs sont remplis
@@ -41,11 +43,12 @@ async function addPhoto() {
 async function updateGalleries() {
   const response = await fetch("http://localhost:5678/api/works");
   const works = await response.json();
-  console.log("works", works);
 
   // Mettre à jour la galerie principale
-  const mainGallery = document.querySelector(".gallery");
-  mainGallery.innerHTML = "";
+  const mainGallery = checkElement(".gallery");
+  if (mainGallery) {
+    mainGallery.innerHTML = "";
+  }
   works.forEach((work) => {
     const figure = document.createElement("figure");
     const img = document.createElement("img");
@@ -61,14 +64,14 @@ async function updateGalleries() {
   });
 
   form.reset();
-  document.querySelector(".label-content").style.display = "flex";
-  document.querySelector("#selected-img").style.display = "none";
+  checkElement(".label-content").style.display = "flex";
+  checkElement("#selected-img").style.display = "none";
 }
 
 // Gestion de l'aperçu de l'image
-const inputFile = document.querySelector("#upload-image");
-const selectedImg = document.querySelector("#selected-img");
-const labelContent = document.querySelector(".label-content");
+const inputFile = checkElement("#upload-image");
+const selectedImg = checkElement("#selected-img");
+const labelContent = checkElement(".label-content");
 
 inputFile.addEventListener("change", () => {
   const img = inputFile.files[0];
@@ -80,30 +83,30 @@ inputFile.addEventListener("change", () => {
 });
 
 /** changement de couleur bouton de validation */
-const validateBtn = document.querySelector(".validate-btn");
-const uploadImageInput = document.querySelector("#upload-image");
-const titleInput = document.querySelector("#title");
-const categorieInput = document.querySelector("#categorie");
+const validateBtn = checkElement(".validate-btn");
+const uploadImageInput = checkElement("#upload-image");
+const titleInput = checkElement("#title");
+const categorieInput = checkElement("#categorie");
 const inputs = [uploadImageInput, titleInput, categorieInput];
-const overlay = document.querySelector(".overlay");
-const errorMessage = document.querySelector("#message-error");
+const overlay = checkElement(".overlay");
+const errorMessage = checkElement("#message-error");
 
 inputs.forEach((input) => {
-  input.addEventListener('change', (event) => {
+  input.addEventListener("change", (event) => {
     event.preventDefault();
-    if(isFormCompleted(inputs)){
+    if (isFormCompleted(inputs)) {
       errorMessage.style.display = "none";
       validateBtn.style.backgroundColor = "#1D6154";
     }
-  })
-})
+  });
+});
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  if(isFormCompleted(inputs)){
+  if (isFormCompleted(inputs)) {
     overlay.style.display = "none";
     addPhoto();
-  }else{
+  } else {
     errorMessage.style.display = "block";
     validateBtn.style.backgroundColor = "#A7A7A7";
   }
